@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Online & Contact - Amma Cafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream-bg: #FAF7F2;
+            --cream-alt: #F3EEE6;
+            --dark-brown: #2D1F1A;
+            --body-text: #5C4638;
+            --accent-brown: #8B5E3C;
+            --soft-green: #7A8B5A;
+            --white: #FFFFFF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--cream-bg);
+            color: var(--body-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation - Same as other pages */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--cream-bg);
+            padding: 1.2rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(45, 31, 26, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-brown);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .logo .amma {
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--dark-brown);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-brown);
+        }
+
+        .nav-order-btn {
+            padding: 0.7rem 1.8rem;
+            background: var(--accent-brown);
+            color: var(--cream-bg);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-order-btn:hover {
+            background: var(--dark-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 94, 60, 0.2);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--dark-brown);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 150px 5% 80px;
+            text-align: center;
+            background: var(--cream-alt);
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: var(--dark-brown);
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--body-text);
+            font-weight: 300;
+        }
+
+        .divider {
+            width: 80px;
+            height: 3px;
+            background: var(--soft-green);
+            margin: 1.5rem auto;
+            border-radius: 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* Order Form Section */
+        .order-section {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(45, 31, 26, 0.06);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-description {
+            color: var(--body-text);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: rgba(122, 139, 90, 0.1);
+            border: 2px solid var(--soft-green);
+            color: var(--soft-green);
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        .success-message i {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .success-message h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-brown);
+        }
+
+        /* Form */
+        .order-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .form-group label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--dark-brown);
+            letter-spacing: 0.3px;
+        }
+
+        .required {
+            color: var(--accent-brown);
+            margin-left: 0.25rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem 1.3rem;
+            background: var(--cream-bg);
+            border: 2px solid var(--cream-alt);
+            border-radius: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: var(--dark-brown);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-brown);
+            background: var(--white);
+            box-shadow: 0 4px 12px rgba(139, 94, 60, 0.08);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(92, 70, 56, 0.5);
+        }
+
+        /* Radio Buttons */
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent-brown);
+            cursor: pointer;
+        }
+
+        .radio-option label {
+            cursor: pointer;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        /* Address field initially hidden */
+        .address-field {
+            display: none;
+        }
+
+        .address-field.show {
+            display: flex;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            padding: 1.2rem 3rem;
+            background: var(--accent-brown);
+            color: var(--cream-bg);
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 20px rgba(139, 94, 60, 0.2);
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(139, 94, 60, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            position: sticky;
+            top: 120px;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(45, 31, 26, 0.06);
+            margin-bottom: 2rem;
+        }
+
+        .contact-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dark-brown);
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--cream-alt);
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--cream-alt);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-brown);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 0.85rem;
+            color: var(--body-text);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .contact-details p {
+            font-size: 1.05rem;
+            color: var(--dark-brown);
+            line-height: 1.7;
+        }
+
+        .contact-details a {
+            color: var(--dark-brown);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--accent-brown);
+        }
+
+        /* Map */
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 350px;
+            box-shadow: 0 10px 40px rgba(45, 31, 26, 0.06);
+            margin-bottom: 2rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--cream-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-brown);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+        }
+
+        .social-link:hover {
+            background: var(--accent-brown);
+            color: var(--cream-bg);
+            transform: translateY(-3px);
+        }
+
+        /* Quick Contact Buttons */
+        .quick-contact {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .quick-btn {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            background: var(--accent-brown);
+            color: var(--cream-bg);
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 94, 60, 0.15);
+        }
+
+        .quick-btn:hover {
+            background: var(--dark-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 94, 60, 0.25);
+        }
+
+        .quick-btn.whatsapp {
+            background: #25D366;
+        }
+
+        .quick-btn.whatsapp:hover {
+            background: #1ebd57;
+        }
+
+        .quick-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Footer - Same as other pages */
+        .footer {
+            background: var(--cream-bg);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(45, 31, 26, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dark-brown);
+            margin-bottom: 1rem;
+        }
+
+        .footer-about .amma {
+            font-style: italic;
+        }
+
+        .footer-about p {
+            color: var(--body-text);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--dark-brown);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--body-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-brown);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(45, 31, 26, 0.1);
+            color: var(--body-text);
+            font-size: 0.95rem;
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-brown);
+            color: var(--cream-bg);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(139, 94, 60, 0.3);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-brown);
+            transform: translateY(-5px);
+        }
+
+        .scroll-top.active {
+            display: flex;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                flex-direction: column;
+                background: var(--cream-bg);
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                padding: 100px 2rem 2rem;
+                gap: 1.5rem;
+                align-items: flex-start;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 20px rgba(45, 31, 26, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .contact-section {
+                position: static;
+            }
+
+            .order-section,
+            .contact-card {
+                padding: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .quick-contact {
+                flex-direction: column;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 120px 5% 60px;
+            }
+
+            .main-content {
+                padding: 3rem 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .order-section,
+            .contact-card {
+                padding: 1.5rem;
+            }
+
+            .section-title,
+            .contact-card h3 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="home.html" class="logo"><span class="amma">Amma</span> Cafe</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="home.html#about">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="home.html#gallery">Gallery</a></li>
+                <li><a href="home.html#contact">Contact</a></li>
+                <li><a href="order.html" class="nav-order-btn active">Order Online</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 class="page-title">Order Online & Get in Touch</h1>
+        <div class="divider"></div>
+        <p class="page-subtitle">We'd love to serve you</p>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="content-grid">
+            <!-- Order Form Section -->
+            <div class="order-section">
+                <h2 class="section-title">Place Your Order</h2>
+                <p class="section-description">Fill in the details and we'll prepare your order with love</p>
+
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Thank You!</h3>
+                    <p>We'll contact you shortly to confirm your order.</p>
+                </div>
+
+                <form class="order-form" id="orderForm">
+                    <div class="form-group">
+                        <label for="name">Your Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXX XXXXX" pattern="[0-9+\s\-()]+">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="order">Select Items / Order Details <span class="required">*</span></label>
+                        <textarea id="order" name="order" required placeholder="Tell us what you'd like to order (e.g., 2x Cappuccino, 1x Pasta, etc.)"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="instructions">Special Instructions</label>
+                        <textarea id="instructions" name="instructions" placeholder="Any allergies, preferences, or special requests?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Order Type <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="dinein" name="orderType" value="dinein" required>
+                                <label for="dinein">Dine In</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="takeaway" name="orderType" value="takeaway" required>
+                                <label for="takeaway">Takeaway</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="delivery" name="orderType" value="delivery" required>
+                                <label for="delivery">Delivery</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group address-field" id="addressField">
+                        <label for="address">Delivery Address <span class="required">*</span></label>
+                        <input type="text" id="address" name="address" placeholder="Enter your complete delivery address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Preferred Time</label>
+                        <input type="text" id="time" name="time" placeholder="e.g., 2:00 PM or ASAP">
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Place Order
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <div class="contact-card">
+                    <h3>Visit Us</h3>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Address</h4>
+                            <p>123 Cafe Street,<br>City Center, Downtown<br>PIN - 123456</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p><a href="mailto:hello@ammacafe.com">hello@ammacafe.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Opening Hours</h4>
+                            <p>Monday - Sunday<br>8:00 AM - 9:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9476519598093!2d-73.99185268459395!3d40.74117197932903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1635000000000!5m2!1sen!2sus"
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <!-- Quick Contact Buttons -->
+                <div class="quick-contact">
+                    <a href="https://wa.me/919876543210?text=Hi! I'd like to place an order from Amma Cafe" class="quick-btn whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        Order on WhatsApp
+                    </a>
+                </div>
+
+                <div class="quick-contact">
+                    <a href="tel:+919876543210" class="quick-btn">
+                        <i class="fas fa-phone"></i>
+                        Call Us Now
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3><span class="amma">Amma</span> Cafe</h3>
+                <p>A warm place for good food and better moments. We're committed to serving you with love, quality, and the finest ingredients.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="home.html#about">About</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="home.html#gallery">Gallery</a></li>
+                    <li><a href="home.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="menu.html#hot-beverages">Coffee</a></li>
+                    <li><a href="menu.html#cold-beverages">Beverages</a></li>
+                    <li><a href="menu.html#breakfast">Breakfast</a></li>
+                    <li><a href="menu.html#desserts">Desserts</a></li>
+                    <li><a href="order.html">Order Online</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li>123 Cafe Street</li>
+                    <li>City, State - 123456</li>
+                    <li>+91 98765 43210</li>
+                    <li>hello@ammacafe.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Amma Cafe. All Rights Reserved. Made with 💚 and ☕</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Show/hide address field based on order type
+        const deliveryRadio = document.getElementById('delivery');
+        const dineinRadio = document.getElementById('dinein');
+        const takeawayRadio = document.getElementById('takeaway');
+        const addressField = document.getElementById('addressField');
+        const addressInput = document.getElementById('address');
+
+        deliveryRadio.addEventListener('change', () => {
+            addressField.classList.add('show');
+            addressInput.required = true;
+        });
+
+        dineinRadio.addEventListener('change', () => {
+            addressField.classList.remove('show');
+            addressInput.required = false;
+        });
+
+        takeawayRadio.addEventListener('change', () => {
+            addressField.classList.remove('show');
+            addressInput.required = false;
+        });
+
+        // Form submission
+        const orderForm = document.getElementById('orderForm');
+        const successMessage = document.getElementById('successMessage');
+
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                order: document.getElementById('order').value,
+                instructions: document.getElementById('instructions').value,
+                orderType: document.querySelector('input[name="orderType"]:checked').value,
+                address: document.getElementById('address').value,
+                time: document.getElementById('time').value
+            };
+
+            // Log form data (in production, send to server/EmailJS)
+            console.log('Order Data:', formData);
+
+            // Show success message
+            successMessage.classList.add('show');
+            
+            // Scroll to success message
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Reset form
+            orderForm.reset();
+            addressField.classList.remove('show');
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+
+            // Optional: EmailJS integration
+            /*
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData)
+                .then(() => {
+                    successMessage.classList.add('show');
+                    orderForm.reset();
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Something went wrong. Please try calling us instead.');
+                });
+            */
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amma Cafe - Fresh Brews, Cozy Corners</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream-bg: #FAF7F2;
+            --cream-alt: #F3EEE6;
+            --dark-brown: #2D1F1A;
+            --body-text: #5C4638;
+            --accent-brown: #8B5E3C;
+            --soft-green: #7A8B5A;
+            --white: #FFFFFF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--cream-bg);
+            color: var(--body-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--cream-bg);
+            padding: 1.2rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(45, 31, 26, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-brown);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .logo .amma {
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--dark-brown);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-brown);
+        }
+
+        .nav-order-btn {
+            padding: 0.7rem 1.8rem;
+            background: var(--accent-brown);
+            color: var(--cream-bg);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-order-btn:hover {
+            background: var(--dark-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 94, 60, 0.2);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--dark-brown);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 150px 5% 100px;
+            background: linear-gradient(rgba(250, 247, 242, 0.85), rgba(243, 238, 230, 0.9)), 
+                        url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2000') center/cover;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeSlideUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: var(--dark-brown);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--body-text);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent-brown);
+            color: var(--cream-bg);
+            box-shadow: 0 8px 20px rgba(139, 94, 60, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(139, 94, 60, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-brown);
+            border: 2px solid var(--accent-brown);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-brown);
+            color: var(--cream-bg);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-alt {
+            background: var(--cream-alt);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            color: var(--dark-brown);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--body-text);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            font-weight: 300;
+        }
+
+        .divider {
+            width: 80px;
+            height: 3px;
+            background: var(--soft-green);
+            margin: 1.5rem auto 3rem;
+            border-radius: 10px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(45, 31, 26, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: var(--body-text);
+        }
+
+        .about-features {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-badge {
+            padding: 0.6rem 1.5rem;
+            background: var(--cream-bg);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: var(--accent-brown);
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(139, 94, 60, 0.1);
+        }
+
+        /* Menu Section */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .menu-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(45, 31, 26, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(45, 31, 26, 0.15);
+        }
+
+        .menu-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .menu-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-card:hover .menu-image img {
+            transform: scale(1.1);
+        }
+
+        .menu-content {
+            padding: 1.8rem;
+        }
+
+        .menu-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-content p {
+            font-size: 0.95rem;
+            color: var(--body-text);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .menu-price {
+            font-size: 1.3rem;
+            color: var(--accent-brown);
+            font-weight: 600;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 300px;
+            box-shadow: 0 8px 25px rgba(45, 31, 26, 0.1);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        /* Why Choose Us Section */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .why-card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(45, 31, 26, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(45, 31, 26, 0.12);
+        }
+
+        .why-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .why-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--dark-brown);
+            margin-bottom: 1rem;
+        }
+
+        .why-card p {
+            color: var(--body-text);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(45, 31, 26, 0.08);
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dark-brown);
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--cream-alt);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--cream-alt);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-brown);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .info-text h4 {
+            font-size: 0.9rem;
+            color: var(--body-text);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .info-text p {
+            font-size: 1.05rem;
+            color: var(--dark-brown);
+            line-height: 1.7;
+        }
+
+        .info-text a {
+            color: var(--dark-brown);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-text a:hover {
+            color: var(--accent-brown);
+        }
+
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 100%;
+            min-height: 450px;
+            box-shadow: 0 8px 25px rgba(45, 31, 26, 0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--cream-bg);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(45, 31, 26, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dark-brown);
+            margin-bottom: 1rem;
+        }
+
+        .footer-about .amma {
+            font-style: italic;
+        }
+
+        .footer-about p {
+            color: var(--body-text);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--cream-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-brown);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--accent-brown);
+            color: var(--cream-bg);
+            transform: translateY(-3px);
+        }
+
+        .footer-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--dark-brown);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--body-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-brown);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(45, 31, 26, 0.1);
+            color: var(--body-text);
+            font-size: 0.95rem;
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-brown);
+            color: var(--cream-bg);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(139, 94, 60, 0.3);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-brown);
+            transform: translateY(-5px);
+        }
+
+        .scroll-top.active {
+            display: flex;
+        }
+
+        /* Animations */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                flex-direction: column;
+                background: var(--cream-bg);
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                padding: 100px 2rem 2rem;
+                gap: 1.5rem;
+                align-items: flex-start;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 20px rgba(45, 31, 26, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .menu-grid,
+            .gallery-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 5%;
+            }
+
+            .hero {
+                padding: 120px 5% 80px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo"><span class="amma">Amma</span> Cafe</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="order.html" class="nav-order-btn">Order Online</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">A Warm Place for Good Food & Better Moments</h1>
+            <p class="hero-subtitle">
+                A cozy cafe experience with handcrafted drinks, delicious meals, and a space you'll love coming back to.
+            </p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">View Menu</a>
+                <a href="#contact" class="btn btn-outline">Visit Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section section-alt" id="about">
+        <div class="about-content fade-in">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1000" alt="Amma Cafe Interior">
+            </div>
+            <div class="about-text">
+                <h2>About Amma Cafe</h2>
+                <div class="divider" style="margin-left: 0;"></div>
+                <p>
+                    At Amma Cafe, every cup and every plate is served with warmth, flavor, and a welcoming atmosphere. We believe in creating moments that matter—whether it's your morning coffee ritual, a leisurely brunch with friends, or a quiet afternoon with a good book.
+                </p>
+                <p>
+                    Our cafe is built on the foundation of fresh ingredients, careful preparation, and genuine hospitality. We source locally whenever possible, craft everything in-house, and treat every guest like family.
+                </p>
+                <div class="about-features">
+                    <span class="feature-badge">🌱 Fresh & Local</span>
+                    <span class="feature-badge">☕ Handcrafted</span>
+                    <span class="feature-badge">💚 Made with Love</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section" id="menu">
+        <div class="fade-in">
+            <h2 class="section-title">Our Signature Menu</h2>
+            <div class="divider"></div>
+            <p class="section-subtitle">Handpicked favorites that keep our guests coming back</p>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card fade-in">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800" alt="Cappuccino">
+                </div>
+                <div class="menu-content">
+                    <h3>Cappuccino</h3>
+                    <p>Rich espresso with velvety foam</p>
+                    <div class="menu-price">₹120</div>
+                </div>
+            </div>
+
+            <div class="menu-card fade-in">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?q=80&w=800" alt="Cold Coffee">
+                </div>
+                <div class="menu-content">
+                    <h3>Cold Coffee</h3>
+                    <p>Smooth and refreshing</p>
+                    <div class="menu-price">₹150</div>
+                </div>
+            </div>
+
+            <div class="menu-card fade-in">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=800" alt="Pasta">
+                </div>
+                <div class="menu-content">
+                    <h3>Pasta</h3>
+                    <p>Creamy Italian classic</p>
+                    <div class="menu-price">₹220</div>
+                </div>
+            </div>
+
+            <div class="menu-card fade-in">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=800" alt="Sandwich">
+                </div>
+                <div class="menu-content">
+                    <h3>Sandwich</h3>
+                    <p>Fresh and hearty</p>
+                    <div class="menu-price">₹180</div>
+                </div>
+            </div>
+
+            <div class="menu-card fade-in">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=800" alt="Brownie">
+                </div>
+                <div class="menu-content">
+                    <h3>Brownie</h3>
+                    <p>Warm chocolate indulgence</p>
+                    <div class="menu-price">₹100</div>
+                </div>
+            </div>
+
+            <div class="menu-card fade-in">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?q=80&w=800" alt="Signature Breakfast">
+                </div>
+                <div class="menu-content">
+                    <h3>Signature Breakfast</h3>
+                    <p>The perfect morning start</p>
+                    <div class="menu-price">₹250</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section section-alt" id="gallery">
+        <div class="fade-in">
+            <h2 class="section-title">Our Vibe</h2>
+            <div class="divider"></div>
+            <p class="section-subtitle">A glimpse into the Amma Cafe experience</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800" alt="Cafe Interior 1">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800" alt="Coffee Art">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=800" alt="Cafe Interior 2">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1559305616-3a1e3cf5d9f5?q=80&w=800" alt="Coffee Beans">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=800" alt="Food Plating">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1493857671505-72967e2e2760?q=80&w=800" alt="Outdoor Seating">
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section" id="why-choose">
+        <div class="fade-in">
+            <h2 class="section-title">Why Choose Amma Cafe</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="why-grid">
+            <div class="why-card fade-in">
+                <div class="why-icon">🌿</div>
+                <h3>Fresh Ingredients</h3>
+                <p>We source locally and prepare daily to ensure every dish is as fresh and flavorful as possible.</p>
+            </div>
+            <div class="why-card fade-in">
+                <div class="why-icon">🏡</div>
+                <h3>Cozy Ambience</h3>
+                <p>A warm space designed for comfort, conversation, and relaxation—your home away from home.</p>
+            </div>
+            <div class="why-card fade-in">
+                <div class="why-icon">💝</div>
+                <h3>Crafted With Care</h3>
+                <p>Every item is made with love, attention to detail, and a commitment to quality you can taste.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section section-alt" id="contact">
+        <div class="fade-in">
+            <h2 class="section-title">Visit Us</h2>
+            <div class="divider"></div>
+            <p class="section-subtitle">We'd love to see you soon!</p>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info fade-in">
+                <h3>Get In Touch</h3>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Location</h4>
+                        <p>123 Main Street,<br>City Center, State<br>PIN - 123456</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Phone</h4>
+                        <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Email</h4>
+                        <p><a href="mailto:hello@ammacafe.com">hello@ammacafe.com</a></p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Opening Hours</h4>
+                        <p>Monday - Sunday<br>8:00 AM - 9:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container fade-in">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9476519598093!2d-73.99185268459395!3d40.74117197932903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1635000000000!5m2!1sen!2sus"
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3><span class="amma">Amma</span> Cafe</h3>
+                <p>A warm place for good food and better moments. We're committed to serving you with love, quality, and the finest ingredients.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="#">Coffee</a></li>
+                    <li><a href="#">Beverages</a></li>
+                    <li><a href="#">Food</a></li>
+                    <li><a href="#">Desserts</a></li>
+                    <li><a href="order.html">Order Online</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li>123 Main Street</li>
+                    <li>City, State - 123456</li>
+                    <li>+91 98765 43210</li>
+                    <li>hello@ammacafe.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Amma Cafe. All Rights Reserved. Made with 💚 and ☕</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
